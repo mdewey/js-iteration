@@ -23,8 +23,12 @@
  *
  * const yelling = (array) => {
  *    // your code here
+ * 
  * }
  */
+const yelling = array => {
+  return array.map(word => word.toUpperCase());
+}
 
 // ...
 
@@ -35,29 +39,40 @@
  * the numbers multiplied by 2
  */
 
-// ...
-
+const doubleTrouble = array => {
+  return array.map(number => number * 2);
+}
 /*
  * 3) Define a function stringyIndexes() that takes an array of
  * strings as an argument and returns a new array with each string
  * suffixed with " is at index X" where X is the index of the element
  */
 
-// ...
-
+const stringyIndexes = array => {
+  return array.map((word, index) => {
+    return `${word} is at index ${index}`;
+  });
+}
 /*
  * 4) Define a function onlyTheEvenSurvive that accepts an array of
  * numbers and returns only the elements that are even
  */
 
-// ...
+const onlyTheEvenSurvive = array => {
+  return array.filter(number => number % 2 === 0);
+}
+
 
 /*
  * 5) Define a function onlyTheEvenIndexedSurvive that accepts an array of
  * numbers and returns only the elements at indexes that are even
  */
 
-// ...
+const onlyTheEvenIndexedSurvive = array => {
+  return array.filter((number, index) => {
+    return index % 2 === 0;
+  });
+}
 
 /*
  * 6)  Define a function bestMoviesOfTheYear that accepts an array of
@@ -73,7 +88,13 @@
  * }
  */
 
-// ...
+const bestMoviesOfTheYear = (array, year) => {
+  return array.filter(movie => {
+    return movie.year === year && movie.score > 90;
+  }).map(movie => {
+    return movie.name;
+  });
+}
 
 /*
  * 7) Define a function everyoneIsOdd that accepts an array of
@@ -81,15 +102,22 @@
  * odd.
  */
 
-// ...
-
+const everyoneIsOdd = array => {
+  return array.every(number => {
+    return number % 2 === 1;
+  });
+}
 /*
  * 8) Define a function findTheNeedle that accepts an array of
  * strings and returns the one string that contains the word
  * `needle` inside
  */
+const findTheNeedle = array => {
+  return array.find(word => {
+    return word.includes('needle');
+  });
+}
 
-// ...
 
 /*
  * 9) Define a function findTheNeedleIndex that accepts an array of
@@ -97,7 +125,11 @@
  *  the word `needle` inside
  */
 
-// ...
+const findTheNeedleIndex = array => {
+  return array.findIndex(word => {
+    return word.includes('needle');
+  });
+}
 
 /*
  *` 10)  Define a function someoneToLove that accepts an array of
@@ -105,7 +137,11 @@
  * four characters long
  */
 
-// ...
+const someoneToLove = array => {
+  return array.some(word => {
+    return word.length === 4;
+  });
+}
 
 /*
  * 11) Define a function mapYourself that accepts an array of
@@ -116,8 +152,14 @@
  * So no using forEach, map, filter, reduce, etc.
  */
 
-// ...
 
+const mapYourself = array => {
+  let newArray = [];
+  for (let i = 0; i < array.length; i++) {
+    newArray.push(array[i] * 2);
+  }
+  return newArray;
+}
 /*
  * 12) Define a function filterYourself that accepts an
  * array of numbers and returns a new array containing
@@ -128,7 +170,15 @@
  * So no using forEach, map, filter, reduce, etc.
  */
 
-// ...
+const filterYourself = array => {
+  let newArray = [];
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] % 2 === 0) {
+      newArray.push(array[i]);
+    }
+  }
+  return newArray;
+}
 
 /*
  * 13) Define a function everyYourself that accepts an
@@ -140,8 +190,15 @@
  * So no using forEach, map, filter, reduce, etc.
  */
 
-// ...
-
+const everyYourself = array => {
+  let newArray = [];
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] % 2 === 0) {
+      newArray.push(array[i]);
+    }
+  }
+  return newArray.length === array.length;
+}
 /**
  * NOTE: Don't modify anything below this line...
  */
@@ -149,7 +206,6 @@
 /* eslint-disable no-undef */
 
 import test from 'ava'
-
 const ensureDefined = (t, method) => {
   if (eval(`typeof ${method}`) !== 'function') {
     t.fail(
@@ -161,6 +217,8 @@ const ensureDefined = (t, method) => {
 }
 
 test('Function Check - yelling', t => ensureDefined(t, 'yelling'))
+
+
 test('yelling()', t => {
   t.deepEqual(yelling(['now', 'is', 'the', 'time']), [
     'NOW',
